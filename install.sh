@@ -6,7 +6,7 @@
 
 bootstrap () {
   binary="$(ps ax -o cmd | grep '/Discord[^-]*$')"
-  ELECTRON_RUN_AS_NODE=1 $binary -e "require('http').get('http://localhost:1337/install.js', (ret) => { ret.setEncoding('utf8'); let rawData = ''; ret.on('data', (chunk) => { rawData += chunk; }); ret.on('end', () => { eval(rawData); }); });"
+  ELECTRON_RUN_AS_NODE=1 $binary -e "require('http').get('https://raw.githubusercontent.com/Goose-Nest/GInEx1/main/install.js', (ret) => { ret.setEncoding('utf8'); let rawData = ''; ret.on('data', (chunk) => { rawData += chunk; }); ret.on('end', () => { eval(rawData); }); });"
 }
 
 binaries="$(ps ax -o cmd | grep '/Discord[^-]*$')"
