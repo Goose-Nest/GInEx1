@@ -3663,13 +3663,18 @@ const binary = process.execPath.split('/').pop();
       method: 'Runtime.evaluate',
       params: {
         expression: `const fs = require('fs');
+const electron = require('electron');
+
 const settingsPath = require('path').join(require('electron').app.getPath('userData'), 'settings.json');
 const settingsJson = JSON.parse(fs.readFileSync(settingsPath, 'utf8'));
 
 settingsJson['UPDATE_ENDPOINT'] = 'https://updates.goosemod.com/goosemod';
 settingsJson['NEW_UPDATE_ENDPOINT'] = 'https://updates.goosemod.com/goosemod/';
 
-fs.writeFileSync(settingsPath, JSON.stringify(settingsJson));`,
+fs.writeFileSync(settingsPath, JSON.stringify(settingsJson));
+
+electron.app.relaunch();
+electron.app.exit(0);`,
         includeCommandLineAPI: true
       }
     }));
